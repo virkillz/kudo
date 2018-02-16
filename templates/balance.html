@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static',filename='css/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all">
+        <link href="{{ url_for('static',filename='css/socicon.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/iconsmind.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/flickity.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/theme.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/custom.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700" rel="stylesheet">
+
+
+    </head>
+    <body data-smooth-scroll-offset="77">
+{% include 'header.html' %}        
+        <div class="main-container">
+            <section class="cover imagebg height-70 text-center" data-overlay="4">
+                <div class="background-image-holder"><img alt="background" src="/static/img/aawall2.jpg"></div>
+                <div class="container pos-vertical-center">
+                    <div class="row">
+                        <div class="col-sm-10 col-md-8">
+                            <h1>Enter your address here</h1>
+                            <p class="lead"> Or someone else's address. It's public information anyway. </p>
+                            <div class="boxed boxed--lg bg--white text-left">
+                                <form class="form--horizontal" action="/wallet/balance" method="post">
+                                    <div class="col-sm-8"> <input type="text" name="address" placeholder="Type your wallet address here"> </div>
+                                    <div class="col-sm-4"> <button type="submit" class="btn btn--primary type--uppercase">Check balance</button> </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="text-center-xs space--xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <ul class="list-inline">
+                                <li> <a href="#"><span class="h6 type--uppercase"><p>About</p></span></a> </li>
+                                <li> <a href="#"><span class="h6 type--uppercase">Github</span></a> </li>
+                                <li> <a href="#"><span class="h6 type--uppercase">Support</span></a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 text-right text-center-xs">
+<!--                             <ul class="social-list list-inline list--hover">
+                                <li><a href="#"><i class="socicon socicon-google icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-twitter icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-facebook icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-instagram icon icon--xs"></i></a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7"> <a class="type--fine-print" href="#">Privacy Policy</a> <a class="type--fine-print" href="#">Legal</a> </div>
+                        <div class="col-sm-5 text-right text-center-xs"> <a class="type--fine-print" href="#">virkill@gmail.com</a> </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/flickity.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/parallax.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/countdown.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/smooth-scroll.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/scripts.js') }}"></script>
+
+
+    </body>
+
+</html>

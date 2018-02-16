@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static',filename='css/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all">
+        <link href="{{ url_for('static',filename='css/socicon.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/iconsmind.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/flickity.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/theme.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/custom.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700" rel="stylesheet">
+
+
+    </head>
+    <body data-smooth-scroll-offset="77">
+        <div class="nav-container">
+            <div>
+                <div class="bar bar--sm visible-xs">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-2">
+                                <a href="index.html"> <img class="logo logo-dark" alt="logo" src="static/img/logo-dark2.png"> <img class="logo logo-light" alt="logo" src="static/img/logo-light.png"> </a>
+                            </div>
+                            <div class="col-xs-9 col-sm-10 text-right">
+                                <a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs hidden-sm"> <i class="icon icon--sm stack-interface stack-menu"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav id="menu1" class="bar bar-1 hidden-xs">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-1 col-sm-2 hidden-xs">
+                                <div class="bar__module">
+                                    <a href="index.html"> <img class="logo logo-dark" alt="logo" src="static/img/logo-dark.png"> <img class="logo logo-light" alt="logo" src="static/img/logo-light.png"> </a>
+                                </div>
+                            </div>
+                            <div class="col-md-11 col-sm-12 text-right text-left-xs text-left-sm">
+                                <div class="bar__module">
+                                    <ul class="menu-horizontal text-left">
+                                        <li> <a href="#">
+                                        Whitepaper
+                                    </a> </li>                                        
+                                        <li class="dropdown"> <span class="dropdown__trigger">
+                                        Wallet
+                                    </span>
+                                            <div class="dropdown__container">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="dropdown__content col-md-2">
+                                                            <ul class="menu-vertical">
+                                                                <li> <a href="#">New Address</a> </li>
+                                                                <li> <a href="#">Check Balance</a> </li>
+                                                                <li> <a href="#">Send Kudo</a> </li>
+                                                                <li> <a href="#">History</a> </li>                    
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown"> <span class="dropdown__trigger">
+                                        About
+                                    </span>
+                                            <div class="dropdown__container">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="dropdown__content col-md-2">
+                                                            <ul class="menu-vertical">
+                                                                <li> <a href="#">Kudo</a> </li>
+                                                                <li> <a href="#">Unihack</a> </li>
+                                                                <li> <a href="#">Team</a></li>                    
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>  
+                                        <li class="dropdown"> <span class="dropdown__trigger">
+                                        Tutorial
+                                    </span>
+                                            <div class="dropdown__container">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="dropdown__content col-md-2">
+                                                            <ul class="menu-vertical">
+                                                                <li> <a href="#">Basic Operation</a> </li>
+                                                                <li> <a href="#">Setup a node</a> </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>                                                                                
+                                    </ul>
+                                </div>
+                                <div class="bar__module">
+                                    <a class="btn btn--sm type--uppercase" href="http://http://159.65.1.34/"> <span class="btn__text">
+                                    Explorer
+                                </span> </a>
+                                    <a class="btn btn--sm btn--primary type--uppercase" href="faucet"> <span class="btn__text">
+                                    Faucet
+                                </span> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="main-container">
+            <section class="cover height-80 imagebg text-center" data-overlay="4">
+                <div class="background-image-holder"> <img alt="background" src="static/img/aawall2.jpg"> </div>
+                <div class="container pos-vertical-center">
+                    <div class="row">
+                        <div class="col-sm-8 col-md-7">
+                            <h1> (not really) a Whitepaper</h1>
+                            <p class="lead">Since whitepaper suppoed to be more like an academic paper. This is definetely not. We plan to name it brownpaper but then it will confuse people even further. So this is detail boring exolanation on why we build Kudo.</p>
+                            <a class="btn btn--primary type--uppercase" href="#"> <span class="btn__text">
+						Read PDF</span> </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="text-center-xs space--xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <ul class="list-inline">
+                                <li> <a href="#"><span class="h6 type--uppercase"><p>About</p></span></a> </li>
+                                <li> <a href="#"><span class="h6 type--uppercase">Github</span></a> </li>
+                                <li> <a href="#"><span class="h6 type--uppercase">Support</span></a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 text-right text-center-xs">
+<!--                             <ul class="social-list list-inline list--hover">
+                                <li><a href="#"><i class="socicon socicon-google icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-twitter icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-facebook icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-instagram icon icon--xs"></i></a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7"> <a class="type--fine-print" href="#">Privacy Policy</a> <a class="type--fine-print" href="#">Legal</a> </div>
+                        <div class="col-sm-5 text-right text-center-xs"> <a class="type--fine-print" href="#">virkill@gmail.com</a> </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/flickity.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/parallax.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/countdown.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/smooth-scroll.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/scripts.js') }}"></script>
+
+
+    </body>
+
+</html>

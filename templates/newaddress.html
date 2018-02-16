@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static',filename='css/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all">
+        <link href="{{ url_for('static',filename='css/socicon.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/iconsmind.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/flickity.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/theme.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/custom.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700" rel="stylesheet">
+
+
+    </head>
+    <body data-smooth-scroll-offset="77">
+{% include 'header.html' %}   
+        <div class="main-container">
+            <section class="bg--secondary"> <h2 class="text-center">Before you generate address, please understand several things below</h2> </section>           
+            <section class="switchable bg--secondary">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 text-center"> <img alt="Image" class="border--round box-shadow-wide" src="/static/img/aapaperwallet.jpg"> </div>
+                        <div class="col-sm-6 col-md-5">
+                            <ol class="process-3">
+                                <li class="process_item">
+                                    <div class="process__number"><span>1</span></div>
+                                    <div class="process__body">
+                                        <h4>Your key is your wallet</h4>
+                                        <p> You will get 3 key: address, public key, and private key. This is randomly generated trough cryptography algorithm, we DO NOT store your key in our server. Please store somewhere really save, there is no way you can retrieve it again if you lost it.</p>
+                                    </div>
+                                </li>
+                                <li class="process_item">
+                                    <div class="process__number"><span>2</span></div>
+                                    <div class="process__body">
+                                        <h4>We can’t transfer money on your behalf</h4>
+                                        <p> Due to blockchain architecture, nobody cannot perform any transfer unless they know the private key, including us. Since this is permissioned blockchain, it is possible for us to block some address and freeze the account, but it is impossible to move your balance without knowing your private key. It is also impossible to retrieve back your lost balance. </p>
+                                    </div>
+                                </li>
+                                <li class="process_item">
+                                    <div class="process__number"><span>3</span></div>
+                                    <div class="process__body">
+                                        <h4>Save your paper wallet</h4>
+                                        <p> The generated address will show only once. It will generate new one if you open it again. You better save as PDF.  </p>
+                                    </div>
+                                </li>
+                            </ol>
+                         <a class="btn btn--primary type--uppercase" target="_blank"href="/wallet/showqr"> <span class="btn__text">
+                        I Understand</span> </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="text-center-xs space--xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <ul class="list-inline">
+                                <li> <a href="#"><span class="h6 type--uppercase"><p>About</p></span></a> </li>
+                                <li> <a href="#"><span class="h6 type--uppercase">Github</span></a> </li>
+                                <li> <a href="#"><span class="h6 type--uppercase">Support</span></a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 text-right text-center-xs">
+<!--                             <ul class="social-list list-inline list--hover">
+                                <li><a href="#"><i class="socicon socicon-google icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-twitter icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-facebook icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-instagram icon icon--xs"></i></a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7"> <a class="type--fine-print" href="#">Privacy Policy</a> <a class="type--fine-print" href="#">Legal</a> </div>
+                        <div class="col-sm-5 text-right text-center-xs"> <a class="type--fine-print" href="#">virkill@gmail.com</a> </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/flickity.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/parallax.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/countdown.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/smooth-scroll.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/scripts.js') }}"></script>
+
+
+    </body>
+
+</html>

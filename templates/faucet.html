@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static',filename='css/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all">
+        <link href="{{ url_for('static',filename='css/socicon.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/iconsmind.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/flickity.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/theme.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/custom.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700" rel="stylesheet">
+
+
+    </head>
+    <body data-smooth-scroll-offset="77">
+{% include 'header.html' %}        
+        <div class="main-container">   
+            <section class="text-center imagebg" data-overlay="4">
+                <div class="background-image-holder"> <img alt="background" src="/static/img/hero-1.jpg"> </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                            <div class="boxed boxed--lg bg--dark subscribe-form-1">
+                                <h3>Get 25 Free Kudo by solving captcha</h3>
+                                <h5>{{ errormsg }}</h5>
+                                <div class="col-sm-8 col-sm-offset-2 text-left">
+                                    <form action="/faucet" method="post">
+                                    <input type="text" name="address" placeholder="Your Wallet Address">  
+                                    <div class="text-center" style="margin-top:10px">{{ recaptcha }}</div>
+                                     <button type="submit" style="margin-top:10px" class="btn btn--primary type--uppercase">Get Kudo</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+           <footer class="text-center-xs space--xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <ul class="list-inline">
+                                <li> <a href="#"><span class="h6 type--uppercase"><p>About</p></span></a> </li>
+                                <li> <a href="#"><span class="h6 type--uppercase">Github</span></a> </li>
+                                <li> <a href="#"><span class="h6 type--uppercase">Support</span></a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 text-right text-center-xs">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7"> <a class="type--fine-print" href="#">Privacy Policy</a> <a class="type--fine-print" href="#">Legal</a> </div>
+                        <div class="col-sm-5 text-right text-center-xs"> <a class="type--fine-print" href="#">virkill@gmail.com</a> </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/flickity.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/parallax.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/countdown.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/smooth-scroll.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/scripts.js') }}"></script>
+    </body>
+</html>              

@@ -1,9 +1,12 @@
-from flask import Flask,jsonify
+from flask import Flask,jsonify, render_template,request, Response
 from Savoir import Savoir
+from flask_qrcode import QRcode
 #from requests import ReadTimeout, ConnectTimeout, HTTPError, Timeout, ConnectionError
 import json
 from functools import wraps
-from flask import request, Response
+# from flask import request, Response
+from flask_recaptcha import ReCaptcha
+import requests
 
 
 def check_auth(username, password):
@@ -34,11 +37,84 @@ rpchost = '159.65.1.34'
 rpcport = '4774'
 chainname = 'ideachain'
 
-app=Flask(__name__)
+
+app=Flask(__name__,static_url_path='/static')
+app.config.update({
+    'RECAPTCHA_ENABLED': False,
+    'RECAPTCHA_SITE_KEY': "6LfntEYUAAAAAIeK8kIh8x5AjJ5NjebKM4hp17oA",
+    'RECAPTCHA_SECRET_KEY': "6LfntEYUAAAAAL5GYAX1vZuagQVoxERr0oHLu-3n"
+})
+
+recaptcha = ReCaptcha()
+recaptcha.init_app(app)
+QRcode(app)
 
 @app.route('/')
 def starter():
-	return 'Hey ^^'
+	return render_template('home.html')
+
+@app.route('/whitepaper')
+def whitepaper():
+	return render_template('whitepaper.html')
+
+@app.route('/wallet/newaddress')
+def newaddressqr():
+	return render_template('newaddress.html')
+
+@app.route('/wallet/showqr')
+def showqr():
+	return render_template('addressqr.html')
+
+@app.route('/faucet',methods = ['POST', 'GET'])
+def showfaucet():
+	if request.method == 'GET':
+		return render_template('faucet.html')
+	else:		
+		if recaptcha.verify():
+			try:
+				addr=request.form['address']
+				api = Savoir(rpcuser, rpcpasswd, rpchost, rpcport, chainname)	
+				sendasset=api.sendasset(addr,'KUDO',25)
+				if 'error' in sendasset:
+					errormsg=sendasset['error']['message']
+					# return jsonify({'result':'false','error':errormsg})	
+					return render_template('faucet.html',errormsg="Failed. "+errormsg)
+				else:
+					# return 'joy'
+					# return jsonify({'result':'true','error':''})
+					return render_template('faucet.html',errormsg="Succeed. Add 25 to "+addr)					
+			except ConnectionError:
+				# return jsonify({'result':'false','error':'can\'t connect to node'})
+				return render_template('faucet.html',errormsg="Failed. Can't connect to the Node")					
+			pass
+		else:
+			return render_template('faucet.html',errormsg="Wrong Captcha")
+			pass
+
+@app.route('/wallet/sendkudo')
+def walletsendkudo():
+	return render_template('sendkudo.html')
+
+
+@app.route('/wallet/balance',methods = ['POST', 'GET'])
+def balance():
+	if request.method == 'GET':
+		return render_template('balance.html')
+	else:
+		address=request.form['address']
+		try:
+			api = Savoir(rpcuser, rpcpasswd, rpchost, rpcport, chainname)
+			test=api.getaddressbalances(address)
+			balance=0
+			for x in test:
+				if ('name' in x) and (x['name']=='KUDO'):
+					balance=x['qty']
+				else:
+					return jsonify({'result':'false','error':'address can\'t be founded.'})
+			return jsonify({'result':'true','address':address,'coin':'KUDO','balance':balance,'error':''})
+		except ConnectionError:
+			return jsonify({'result':'false','error':'can\'t connect to node'})	
+		# return render_template('balance.html')	
 
 @app.route('/api/v1/getbalance/<addr>')
 def getbalance(addr):
@@ -47,11 +123,9 @@ def getbalance(addr):
 		test=api.getaddressbalances(addr)
 		balance=0
 		for x in test:
-			try:
-				if x.has_key('name') and x['name']=='KUDO':
-					# if x['name']=='KUDO':
-					balance=x['qty']
-			except AttributeError:
+			if ('name' in x) and (x['name']=='KUDO'):
+				balance=x['qty']
+			else:
 				return jsonify({'result':'false','error':'address can\'t be founded.'})
 		return jsonify({'result':'true','address':addr,'coin':'KUDO','balance':balance,'error':''})
 	except ConnectionError:
@@ -73,13 +147,13 @@ def newaddress():
 def faucet10(addr):
 	try:
 		api = Savoir(rpcuser, rpcpasswd, rpchost, rpcport, chainname)	
-		sendasset=api.sendasset(addr,'KUDO',10)	
-		try:
-			if sendasset.has_key('error'):
-				errormsg=sendasset['error']['message']
-				print({'result':'false','error':errormsg})	
-		except AttributeError:
-			print({'result':'true','error':''})
+		sendasset=api.sendasset(addr,'KUDO',25)
+		if 'error' in sendasset:
+			errormsg=sendasset['error']['message']
+			return jsonify({'result':'false','error':errormsg})	
+		else:
+			# return 'joy'
+			return jsonify({'result':'true','error':''})
 	except ConnectionError:
 		return jsonify({'result':'false','error':'can\'t connect to node'})	
 
