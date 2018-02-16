@@ -22,12 +22,12 @@
 <section class="switchable feature-large">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6 text-center"> <img alt="Image" class="border--round box-shadow-wide" src="{{ qrcode('19biaVCwZQvxatM3pw2j9E5fPygb4nxgKa2Zjt') }}"> </div>
+                        <div class="col-sm-6 text-center"> <img alt="Image" class="border--round box-shadow-wide" src="{{ qrcode(keys.addr) }}"> </div>
                         <div class="col-sm-6 col-md-5">
                             <div class="switchable__text">
                                 <h2>Kudo Address</h2>
                                 <p class="lead">This is your address. Show this every time you ask someone to send Kudo to you. You can publish as you want on your website, page, etc. You can also create many address and split your Kudo balance. Scan the QR code or copy the address below to use it. They are the same.</p>
-                                <div class="boxed bg--secondary"><p>19biaVCwZQvxatM3pw2j9E5fPygb4nxgKa2Zjt</p></div>
+                                <div class="boxed bg--secondary"><p>{{keys.addr}}</p></div>
                             </div>
                         </div>
                     </div>
@@ -37,20 +37,20 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="feature feature-5 boxed boxed--lg boxed--border"> <img width="150px" heightx="100px" src="{{ qrcode('02ef8881c1082684eb40592c3ad0233745250916d4cbbf489f22b073de64e58eed') }}">
+                            <div class="feature feature-5 boxed boxed--lg boxed--border"> <img width="150px" heightx="100px" src="{{ qrcode(keys.pubkey) }}">
                                 <div class="feature__body">
                                     <h5>Public Key</h5>
                                     <p>You will rarely use this. It can be used to exchange encrypted message and stuff. But it's better to hide it most of the time. Scan the QR code or copy the address below to use it. They are the same.</p>
-                                     <div class="boxed bg--secondary"><p>02ef8881c1082684eb40592c3ad0233745250916d4cbbf489f22b073de64e58eed</p></div>
+                                     <div class="boxed bg--secondary"><p>{{ keys.pubkey }}</p></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <div class="feature feature--featured feature-5 boxed boxed--lg boxed--border"> <img width="150px" heightx="100px" src="{{ qrcode('V5FNGuxvdrVhguDgMwSgsMjvkDENoTUFoUkVDuKAZDH8uQWsbDraSr3z') }}">
+                            <div class="feature feature--featured feature-5 boxed boxed--lg boxed--border"> <img width="150px" heightx="100px" src="{{ qrcode(keys.privkey) }}">
                                 <div class="feature__body">
                                     <h5>Private Key</h5>
                                     <p>This key you must keep it safe. Only you can know this key. If some one else know, they can use it to move your Kudo. If you lost this key, there's no way to retrieve it back. Make copy all you want, but keep it to yourself. Scan the QR code or copy the address below to use it. They are the same.</p>
-                                     <div class="boxed bg--secondary"><p>V5FNGuxvdrVhguDgMwSgsMjvkDENoTUFoUkVDuKAZDH8uQWsbDraSr3z</p></div>
+                                     <div class="boxed bg--secondary"><p>{{ keys.privkey }}</p></div>
                                 </div>                              
                             </div>
                         </div>

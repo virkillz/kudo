@@ -58,12 +58,22 @@ def whitepaper():
 	return render_template('whitepaper.html')
 
 @app.route('/wallet/newaddress')
-def newaddressqr():
+def newaddressqr():	
 	return render_template('newaddress.html')
 
 @app.route('/wallet/showqr')
 def showqr():
-	return render_template('addressqr.html')
+	try:
+		api = Savoir(rpcuser, rpcpasswd, rpchost, rpcport, chainname)
+		newaddress=api.createkeypairs()
+		tryimport=api.importaddress(newaddress[0]['address'],'',bool(''))
+		api.grant(newaddress[0]['address'],'send')
+		api.grant(newaddress[0]['address'],'receive')
+		# return jsonify({'result':'true','address':newaddress[0]['address'],'public_key':newaddress[0]['pubkey'],'private_key':newaddress[0]['privkey'],'error':''})
+		keys={'addr':newaddress[0]['address'],'pubkey':newaddress[0]['pubkey'],'privkey':newaddress[0]['privkey']}
+		return render_template('addressqr.html',keys=keys)
+	except ConnectionError:
+		return jsonify({'result':'false','error':'can\'t connect to node'})		
 
 @app.route('/faucet',methods = ['POST', 'GET'])
 def showfaucet():
@@ -110,10 +120,13 @@ def balance():
 				if ('name' in x) and (x['name']=='KUDO'):
 					balance=x['qty']
 				else:
-					return jsonify({'result':'false','error':'address can\'t be founded.'})
-			return jsonify({'result':'true','address':address,'coin':'KUDO','balance':balance,'error':''})
+					# return jsonify({'result':'false','error':'address can\'t be founded.'})
+					return render_template('balanceresult.html',msg="Address cannot be founded.")
+			return render_template('balanceresult.html',msg="Balance of "+address+" is "+str(balance)+ " Kudo")
+			# return jsonify({'result':'true','address':address,'coin':'KUDO','balance':balance,'error':''})
 		except ConnectionError:
-			return jsonify({'result':'false','error':'can\'t connect to node'})	
+			return render_template('balanceresult.html',msg="Can't connect to the node.")
+			# return jsonify({'result':'false','error':'can\'t connect to node'})	
 		# return render_template('balance.html')	
 
 @app.route('/api/v1/getbalance/<addr>')
