@@ -1,4 +1,4 @@
-from flask import Flask,jsonify, render_template,request, Response
+from flask import Flask,jsonify, render_template,request, Response,redirect
 from Savoir import Savoir
 from flask_qrcode import QRcode
 #from requests import ReadTimeout, ConnectTimeout, HTTPError, Timeout, ConnectionError
@@ -61,6 +61,13 @@ def whitepaper():
 def newaddressqr():	
 	return render_template('newaddress.html')
 
+@app.route('/wallet/history',methods = ['POST', 'GET'])
+def gethistory():	
+	if request.method == 'GET':
+		return render_template('history.html')
+	else:
+		return redirect("http://159.65.1.34/Ideachain/assetaddress/"+request.form['address']+"/60-265-65453")
+
 @app.route('/wallet/showqr')
 def showqr():
 	try:
@@ -101,9 +108,33 @@ def showfaucet():
 			return render_template('faucet.html',errormsg="Wrong Captcha")
 			pass
 
-@app.route('/wallet/sendkudo')
+@app.route('/wallet/sendkudo',methods = ['POST', 'GET'])
 def walletsendkudo():
-	return render_template('sendkudo.html')
+	if request.method == 'GET':	
+		return render_template('sendkudo.html')
+	else:
+		addfrom = request.form['origin']
+		addto = request.form['destination']
+		amt=request.form['amount']
+		privkey=request.form['privkey']
+	if is_int(amt)==False:
+		return render_template('sendkudo.html',errormsg="Check your amount. It must be rounded number")
+	try:
+		api = Savoir(rpcuser, rpcpasswd, rpchost, rpcport, chainname)
+		coba=api.createrawsendfrom(addfrom,json.loads('{"'+addto+'":{"KUDO":'+amt+'}}'))
+		if 'error' in coba:
+			return render_template('sendkudo.html',errormsg=coba['error']['message'])
+		else:
+			sign=api.signrawtransaction(coba,[],[privkey])
+			if 'error' in sign:
+				return render_template('sendkudo.html',errormsg=sign['error']['message'])
+			else:
+				publish=api.sendrawtransaction(sign['hex'])
+				detail={"id":publish,"origin":addfrom,"destination":addto,"amount":amt}
+				return render_template('transfersuccess.html',trx=detail)
+				# return jsonify({'result':'true','error':'','origin_address':addfrom,'destination_address':addto,'amount':amt,'trx_id':publish})
+	except ConnectionError:
+		return render_template('sendkudo.html',errormsg="Cannot connect to the node")
 
 
 @app.route('/wallet/balance',methods = ['POST', 'GET'])

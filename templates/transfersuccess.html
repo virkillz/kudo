@@ -19,28 +19,21 @@
     <body data-smooth-scroll-offset="77">
 {% include 'header.html' %}        
         <div class="main-container">          
-            <section class="space--xs imageblock switchable feature-large bg--secondary">
-                <div class="imageblock__content col-md-5 col-sm-4 pos-right">
-                    <div class="background-image-holder"> <img alt="image" src="/static/img/aawall2.jpg"> </div>
-                </div>
+            <section class="text-center bg--secondary">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-5 col-sm-7">
-                            <h2>Send Kudo!</h2>
-                            <div>Double check everything. You might lost your kudo.</div>
-                            <div style="color:tomato">{{ errormsg }}</div>
-                            <hr class="short">
-                            <form action="/wallet/sendkudo" method="post">
-                                <div class="row">
-                                    <div class="col-xs-12"> <input type="text" name="origin" placeholder="Your Address" required> </div>
-                                    <div class="col-xs-12"> <input type="text" name="destination" placeholder="Destination Address" required> </div>
-                                    <div class="col-xs-12"> <input type="number" name="amount" placeholder="Amount" required> </div>
-                                    <div class="col-xs-12"> <input type="text" name="privkey" placeholder="Your Private Key" required> </div>
-                                    <div class="col-xs-12"> <button type="submit" class="btnbtn--primary" >Send Kudo</button> </div>
-                                    <hr>
-                                    <div class="col-xs-12"> <span class="type--fine-print">By using this tool, you agree to the <a href="#">Terms of Service</a></span> </div>
+                        <div class="col-sm-8 col-md-6">
+                            <div class="cta">
+                                <h2>Your transfer are successfull</h2>
+                                <div class="text-left">
+                                <p> Origin Address: {{trx.origin}}</p><p>Destination address: {{trx.destination}}
+                                </p>Amount: {{trx.amount}}</p><p>Tx ID: {{trx.id}}</p>
                                 </div>
-                            </form>
+                                <br>
+                                <a class="btn btn--primary type--uppercase" href="http://159.65.1.34/Ideachain/tx/{{ trx.id }}" target="_blank"> <span class="btn__text">
+                            See on blockexplorer</span></a>
+                                <div class="col-xs-12"> <span class="type--fine-print"> You might need to wait up to 10 second for your transaction to be appear on Blockexplorer</span> </div>                            
+                            </div>
                         </div>
                     </div>
                 </div>

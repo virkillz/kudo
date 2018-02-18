@@ -18,34 +18,25 @@
     </head>
     <body data-smooth-scroll-offset="77">
 {% include 'header.html' %}        
-        <div class="main-container">          
-            <section class="space--xs imageblock switchable feature-large bg--secondary">
-                <div class="imageblock__content col-md-5 col-sm-4 pos-right">
-                    <div class="background-image-holder"> <img alt="image" src="/static/img/aawall2.jpg"> </div>
-                </div>
-                <div class="container">
+        <div class="main-container">
+            <section class="cover imagebg height-70 text-center" data-overlay="4">
+                <div class="background-image-holder"><img alt="background" src="/static/img/aawall2.jpg"></div>
+                <div class="container pos-vertical-center">
                     <div class="row">
-                        <div class="col-md-5 col-sm-7">
-                            <h2>Send Kudo!</h2>
-                            <div>Double check everything. You might lost your kudo.</div>
-                            <div style="color:tomato">{{ errormsg }}</div>
-                            <hr class="short">
-                            <form action="/wallet/sendkudo" method="post">
-                                <div class="row">
-                                    <div class="col-xs-12"> <input type="text" name="origin" placeholder="Your Address" required> </div>
-                                    <div class="col-xs-12"> <input type="text" name="destination" placeholder="Destination Address" required> </div>
-                                    <div class="col-xs-12"> <input type="number" name="amount" placeholder="Amount" required> </div>
-                                    <div class="col-xs-12"> <input type="text" name="privkey" placeholder="Your Private Key" required> </div>
-                                    <div class="col-xs-12"> <button type="submit" class="btnbtn--primary" >Send Kudo</button> </div>
-                                    <hr>
-                                    <div class="col-xs-12"> <span class="type--fine-print">By using this tool, you agree to the <a href="#">Terms of Service</a></span> </div>
-                                </div>
-                            </form>
+                        <div class="col-sm-10 col-md-8">
+                            <h1>Enter your address here</h1>
+                            <p class="lead"> Or someone else's address. It's public information anyway. </p>
+                            <div class="boxed boxed--lg bg--white text-left">
+                                <form class="form--horizontal" action="/wallet/history" method="post">
+                                    <div class="col-sm-8"> <input type="text" name="address" placeholder="Type your wallet address here"> </div>
+                                    <div class="col-sm-4"> <button type="submit" class="btn btn--primary type--uppercase">Check history</button> </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-           <footer class="text-center-xs space--xs">
+            <footer class="text-center-xs space--xs">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-7">
@@ -56,6 +47,12 @@
                             </ul>
                         </div>
                         <div class="col-sm-5 text-right text-center-xs">
+<!--                             <ul class="social-list list-inline list--hover">
+                                <li><a href="#"><i class="socicon socicon-google icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-twitter icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-facebook icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-instagram icon icon--xs"></i></a></li>
+                            </ul> -->
                         </div>
                     </div>
                     <div class="row">
@@ -72,5 +69,8 @@
         <script src="{{ url_for('static',filename='js/countdown.min.js') }}"></script>
         <script src="{{ url_for('static',filename='js/smooth-scroll.min.js') }}"></script>
         <script src="{{ url_for('static',filename='js/scripts.js') }}"></script>
+
+
     </body>
-</html>            
+
+</html>

@@ -65,6 +65,11 @@ html {
     font-size: 81.25%;
   }
 }
+
+.img-circle {
+    border-radius: 50%;
+}
+
 body {
   font-size: 1em;
   line-height: 1.85714286em;
