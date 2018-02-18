@@ -45,25 +45,7 @@
                     </div>
                 </div>
             </section>
-           <footer class="text-center-xs space--xs">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <ul class="list-inline">
-                                <li> <a href="#"><span class="h6 type--uppercase"><p>About</p></span></a> </li>
-                                <li> <a href="#"><span class="h6 type--uppercase">Github</span></a> </li>
-                                <li> <a href="#"><span class="h6 type--uppercase">Support</span></a> </li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-5 text-right text-center-xs">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-7"> <a class="type--fine-print" href="#">Privacy Policy</a> <a class="type--fine-print" href="#">Legal</a> </div>
-                        <div class="col-sm-5 text-right text-center-xs"> <a class="type--fine-print" href="#">virkill@gmail.com</a> </div>
-                    </div>
-                </div>
-            </footer>
+{% include 'footer.html' %}  
         </div>
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>

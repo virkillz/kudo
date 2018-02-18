@@ -53,6 +53,10 @@ QRcode(app)
 def starter():
 	return render_template('home.html')
 
+@app.route('/comingsoon')
+def comingsoon():
+	return render_template('comingsoon.html')
+
 @app.route('/whitepaper')
 def whitepaper():
 	return render_template('whitepaper.html')
