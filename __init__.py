@@ -63,7 +63,7 @@ def getstream(trxid):
 	except ConnectionError:
 		return jsonify({'result':'false','error':'can\'t connect to node'})		
 
-@app.route('/api/v1/storestream')
+@app.route('/api/v1/storestream',methods = ['POST'])
 def storestream():
 	key=request.form['key']
 	value=request.form['value']
