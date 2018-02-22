@@ -233,11 +233,11 @@ def payment(anything):
 
 @app.route('/kudosocial/getfeatured')
 def getfeatured():
-	return '{"result":[{"address":"1a1vDdo2skGtYJr2M7TEFGMaUzPeXuMbkUnBTW","title":"Gregory",content:"Blockchain Atache"},{"address":"1a1mP9mLQFmPc3wXwoQLLSaBEgxsbPqH56syBb","title":"VirKill",content:"Blockchain coder"},{"address":"1RwwZka6bvzMqUzx1GGjP6af86KG6QH769BPY3","title":"Aung Ye Lin",content:"Kudo Pimp"}]}'
+	return '{"result":[{"address":"1a1vDdo2skGtYJr2M7TEFGMaUzPeXuMbkUnBTW","title":"Gregory","content":"Blockchain Atache"},{"address":"1a1mP9mLQFmPc3wXwoQLLSaBEgxsbPqH56syBb","title":"VirKill","content":"Blockchain coder"},{"address":"1RwwZka6bvzMqUzx1GGjP6af86KG6QH769BPY3","title":"Aung Ye Lin","content":"Kudo Pimp"}]}'
 
 @app.route('/kudosocial/getlatesttalk')
 def getlatesttalk():
-	return '{"result":[{"address":"1a1vDdo2skGtYJr2M7TEFGMaUzPeXuMbkUnBTW","title":"Blockchain for Education",content:"So I got an Idea..."},{"address":"1a1mP9mLQFmPc3wXwoQLLSaBEgxsbPqH56syBb","title":"Kudo need to be available on exchange",content:"So I can buy..."},{"address":"1RwwZka6bvzMqUzx1GGjP6af86KG6QH769BPY3","title":"Can we allow advertising?",content:"So I can advertise"}]}'
+	return '{"result":[{"address":"1a1vDdo2skGtYJr2M7TEFGMaUzPeXuMbkUnBTW","title":"Blockchain for Education","content":"So I got an Idea..."},{"address":"1a1mP9mLQFmPc3wXwoQLLSaBEgxsbPqH56syBb","title":"Kudo need to be available on exchange","content":"So I can buy..."},{"address":"1RwwZka6bvzMqUzx1GGjP6af86KG6QH769BPY3","title":"Can we allow advertising?","content":"So I can advertise"}]}'
 
 
 # bohongan
