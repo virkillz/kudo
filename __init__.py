@@ -7,6 +7,7 @@ from functools import wraps
 # from flask import request, Response
 from flask_recaptcha import ReCaptcha
 import requests
+import sqlite3
 
 
 def check_auth(username, password):
@@ -40,7 +41,7 @@ chainname = 'ideachain'
 
 app=Flask(__name__,static_url_path='/static')
 app.config.update({
-    'RECAPTCHA_ENABLED': False,
+    'RECAPTCHA_ENABLED': True,
     'RECAPTCHA_SITE_KEY': "6LfntEYUAAAAAIeK8kIh8x5AjJ5NjebKM4hp17oA",
     'RECAPTCHA_SECRET_KEY': "6LfntEYUAAAAAL5GYAX1vZuagQVoxERr0oHLu-3n"
 })
@@ -53,9 +54,39 @@ QRcode(app)
 def starter():
 	return render_template('home.html')
 
+@app.route('/register/hackathon',methods = ['POST', 'GET'])
+def registerhack():
+	if request.method == 'GET':
+		return render_template('registerhack.html')
+	else:
+		try:
+			regid=request.form['regid']
+			name=request.form['name']
+			email=request.form['email']
+			phone=request.form['phone']
+			univ=request.form['university']
+			interest=request.form['interest']
+			kudoaddress=request.form['address']
+			skill=request.form['skill']
+			con = sqlite3.connect("database.db")
+			cur = con.cursor()
+			cur.execute("INSERT INTO hackathon (regid,name,kudoaddress,phone,email,programming_skill,university,blockchain_interest) VALUES (?,?,?,?,?,?,?,?)",(regid,name,kudoaddress,phone,email,skill,univ,interest) )
+			con.commit()
+			msg = "Record successfully added"
+		except:
+			con.rollback()
+			msg = "error in insert operation"
+		finally:
+			return render_template('registerhack.html',errormsg=msg)
+			con.close()
+
 @app.route('/comingsoon')
 def comingsoon():
 	return render_template('comingsoon.html')
+
+@app.route('/checkout/<token>')
+def checkout(token):
+	return render_template('qrtopay.html')
 
 @app.route('/whitepaper')
 def whitepaper():
@@ -178,6 +209,39 @@ def getbalance(addr):
 		return jsonify({'result':'true','address':addr,'coin':'KUDO','balance':balance,'error':''})
 	except ConnectionError:
 		return jsonify({'result':'false','error':'can\'t connect to node'})
+
+
+# BOHONGAN
+@app.route('/payments/<anything>')
+def payment(anything):
+	return '{\
+	"xchg_rate": null,\
+    "tx_fee": null,\
+    "token": "b846924b-def3-4ae6-8792-4742f7cde5c7",\
+    "timeout": 600,\
+    "tag": null,\
+    "status": "pending",\
+    "redirect_url": null,\
+    "paid_at": null,\
+    "orig_amount": null,\
+    "currency": "xrb",\
+    "created_at": "2018-02-20T09:46:17.512066Z",\
+    "amount": "1",\
+    "account": "xrb_34z3bezxdgmadkba85dt5eybb1n8bobuo1gxcm6a4admbk8frr5h66xcbtxp"\
+}'
+
+
+@app.route('/kudosocial/getfeatured')
+def getfeatured():
+	return '{"result":[{"address":"1a1vDdo2skGtYJr2M7TEFGMaUzPeXuMbkUnBTW","title":"Gregory",content:"Blockchain Atache"},{"address":"1a1mP9mLQFmPc3wXwoQLLSaBEgxsbPqH56syBb","title":"VirKill",content:"Blockchain coder"},{"address":"1RwwZka6bvzMqUzx1GGjP6af86KG6QH769BPY3","title":"Aung Ye Lin",content:"Kudo Pimp"}]}'
+
+@app.route('/kudosocial/getlatesttalk')
+def getlatesttalk():
+	return '{"result":[{"address":"1a1vDdo2skGtYJr2M7TEFGMaUzPeXuMbkUnBTW","title":"Blockchain for Education",content:"So I got an Idea..."},{"address":"1a1mP9mLQFmPc3wXwoQLLSaBEgxsbPqH56syBb","title":"Kudo need to be available on exchange",content:"So I can buy..."},{"address":"1RwwZka6bvzMqUzx1GGjP6af86KG6QH769BPY3","title":"Can we allow advertising?",content:"So I can advertise"}]}'
+
+
+# bohongan
+
 
 @app.route('/api/v1/createrandomaddress')
 def newaddress():

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static',filename='css/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all">
+        <link href="{{ url_for('static',filename='css/socicon.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/iconsmind.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/flickity.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/theme.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ url_for('static',filename='css/custom.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700" rel="stylesheet">
+
+
+    </head>
+    <body data-smooth-scroll-offset="77">
+{% include 'header.html' %}        
+        <div class="main-container">          
+            <section class="space--xs imageblock switchable feature-large bg--secondary">
+                <div class="imageblock__content col-md-5 col-sm-4 pos-right">
+                    <div class="background-image-holder"> <img alt="image" src="/static/img/aawall2.jpg"> </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-7">
+                            <h2>Register Hackathon!</h2>
+                            <div>Fill the information below, including your Kudo Address. Type your address carefully. You might not get your kudo.</div>
+                            <div style="color:tomato">{{ errormsg }}</div>
+                            <hr class="short">
+                            <form action="/register/hackathon" method="post">
+                                <div class="row">
+                                    <div class="col-xs-12"> <input type="text" name="regid" placeholder="Registration ID" required> </div>
+                                    <div class="col-xs-12"> <input type="text" name="name" placeholder="Your name" required> </div>
+                                    <div class="col-xs-12"> <input type="text" name="phone" placeholder="Phone Number" required> </div>
+                                    <div class="col-xs-12"> <input type="email" name="email" placeholder="Email" required> </div>
+                                    <div class="col-xs-12"> <input type="text" name="university" placeholder="University" required> </div>
+                                    <div class="col-xs-12"> <input type="text" name="interest" placeholder="Why you interested in Blockchain?" required> </div>                       
+                                    <div class="col-xs-12"> <input type="text" name="skill" placeholder="What is your IT related skill?" required> </div>                                     
+                                    <div class="col-xs-12"> <input type="text" name="address" placeholder="Kudo Address" required> </div>                              
+                                    <div class="col-xs-12"> <button type="submit" class="btnbtn--primary">Register</button> </div>
+                                    
+                                    <script src="http://127.0.0.1:5000/static/embed.js"
+                                      data-amount="0.001"
+                                      data-currency="xrb"
+                                      data-tag="RaiPay Demo Order"
+                                      data-redirect-url="https://raiblocks.net/"
+                                      data-vendor="B5HP45PBW7UNTYSO">
+                                    </script>
+                                    <hr>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+{% include 'footer.html' %}  
+        </div>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/flickity.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/parallax.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/countdown.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/smooth-scroll.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/scripts.js') }}"></script>
+    </body>
+</html>            
