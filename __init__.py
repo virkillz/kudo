@@ -8,6 +8,7 @@ from functools import wraps
 from flask_recaptcha import ReCaptcha
 import requests
 import sqlite3
+import binascii
 
 
 def check_auth(username, password):
@@ -54,6 +55,48 @@ QRcode(app)
 def starter():
 	return render_template('home.html')
 
+
+
+@app.route('/api/v1/kudosocial/getsocial/<count>/<start>')
+def getsocial(count,start):
+	api = Savoir(rpcuser, rpcpasswd, rpchost, rpcport, chainname)
+	stream = api.liststreamitems('kudosocial',bool(1),int(count),int(start))
+	return json.dumps(stream)
+
+@app.route('/api/v1/kudosocial/post',methods = ['POST'])
+def socialpost():
+	key=request.form['key']
+	value=request.form['value']
+	addr=request.form['addr']
+	privkey=request.form['privkey']
+
+	#switch this in production for python3
+	value=binascii.hexlify(value)
+	# value=value.encode('utf-8')
+	# value=value.hex()
+
+
+	load = [{"for":"kudosocial","key":key,"data":str(value)}]
+	# return load
+	try:
+		api = Savoir(rpcuser, rpcpasswd, rpchost, rpcport, chainname)
+		coba=api.createrawsendfrom(addr,{},load)
+		# return json.dumps(coba)
+		if 'error' in coba:
+			return jsonify({'result':'false','error':coba['error']['message']})	
+		else:
+			sign=api.signrawtransaction(coba,[],[privkey])
+			if 'error' in sign:
+				return jsonify({'result':'false','error':sign['error']['message']})	
+			else:
+				publish=api.sendrawtransaction(sign['hex'])
+				return jsonify({'result':'success','trxid':publish})	
+				# return jsonify({'result':'true','error':'','origin_address':addfrom,'destination_address':addto,'amount':amt,'trx_id':publish})
+	except ConnectionError:
+		return jsonify({'result':'false','error':'can\'t connect to node'})	
+
+
+
 @app.route('/api/v1/getstream/<trxid>')
 def getstream(trxid):
 	try:
@@ -69,10 +112,14 @@ def storestream():
 	value=request.form['value']
 	addr=request.form['addr']
 	privkey=request.form['privkey']
-	value=value.encode('utf-8')
-	value=value.hex()
-	load = [{"for":"experimentdata","key":key,"data":str(value)}]
 
+	#switch this in production for python3
+	value=binascii.hexlify(value)
+	# value=value.encode('utf-8')
+	# value=value.hex()
+
+
+	load = [{"for":"experimentdata","key":key,"data":str(value)}]
 	# return load
 	try:
 		api = Savoir(rpcuser, rpcpasswd, rpchost, rpcport, chainname)
