@@ -55,7 +55,9 @@ QRcode(app)
 def starter():
 	return render_template('home.html')
 
-
+@app.route('/api/v1/kudosocial/getfeatured')
+def getfeatured()
+	return '{"result":[{"address":"1a1mP9mLQFmPc3wXwoQLLSaBEgxsbPqH56syBb","title":"Im awesome","content":"Something is wrong in our community"},{"address":"1a1mP9mLQFmPc3wXwoQLLSaBEgxsbPqH5fsyBb","title":"Im tired","content":"Something is wrong in our community"},{"address":"1a1mP9mLQFmPcewXwoQLLSaBEgxsbPqH56syBb","title":"Im tired","content":"Something is wrong in our community"},{"address":"1a1mP9mLQFmPc3wXwoQLLSaBEgxsbPqH56syBb","title":"Im tired","content":"Something is wrong in our community"}]}'
 
 @app.route('/api/v1/kudosocial/getsocial/<count>/<start>')
 def getsocial(count,start):
